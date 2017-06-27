@@ -1,7 +1,7 @@
 # promise
 ## api ##
 <pre>
-1.var deferred = $Promise.defferred();
+1.var deferred = $Promise.deferred();
 async-callback(function(data){
   deferred.resolve(data);
 });
