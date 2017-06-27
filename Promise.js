@@ -93,6 +93,8 @@ var $Promise = (function () {
         func(deferred.resolve.bind(deferred),deferred.reject.bind(deferred));
         return deferred.promise;
     }
-    $Promise.Deferred = Deferred;
+    $Promise.deferred = function(){
+        return new Deferred();
+    };
     return $Promise;
 })();
