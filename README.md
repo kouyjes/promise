@@ -1,6 +1,6 @@
 # promise
 ## api ##
-<pre>
+```javascript
 1.var deferred = $Promise.deferred();
 async-callback(function(data){
   deferred.resolve(data);
@@ -11,4 +11,4 @@ return deferred.promise;
     resolve(data);
   });
 });
-</pre>
+```
