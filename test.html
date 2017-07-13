@@ -33,6 +33,10 @@
             }).then(function (r) {
                 console.log(r);
             });
+
+            $Promise.all([]).then(function () {
+                console.log('empty promise list !');
+            });
         </script>
     </head>
     <body>

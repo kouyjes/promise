@@ -26,7 +26,7 @@ var $Promise = (function () {
         return this.deferred.promise;
     };
     function isPromise(p){
-        return typeof p.then === 'function';
+        return p && typeof p.then === 'function';
     }
     Promise.prototype.execute = function () {
 
@@ -106,12 +106,12 @@ var $Promise = (function () {
         var deferred = new Deferred();
         if(promises && !(promises instanceof Array)){
             promises = [].concat(promises);
-        }else if(!promises){
+        }else if(!promises || promises.length === 0){
             deferred.resolve();
             return deferred.promise;
         }
-        var promiseCount = promises.length,
-            promiseDatas = [];
+        var promiseCount = promises.length;
+        var promiseDatas = [];
         promises.forEach(function (p,index) {
             p.then(function (data) {
                 if(promiseCount < 0){
