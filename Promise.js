@@ -1,3 +1,6 @@
+/**
+ * Created by koujp on 2017/6/27.
+ */
 var $Promise = (function () {
     function Promise(){
         this.state = {
@@ -22,6 +25,9 @@ var $Promise = (function () {
         }
         return this.deferred.promise;
     };
+    function isPromise(p){
+        return typeof p.then === 'function';
+    }
     Promise.prototype.execute = function () {
 
         var executeType = this.state.code === 1 ? 'success' : 'error';
@@ -36,7 +42,7 @@ var $Promise = (function () {
             }
             return;
         }
-        if(executeResult instanceof Promise){
+        if(isPromise(executeResult)){
             executeResult.then(function (r) {
                 if(promise.deferred){
                     promise.deferred.resolve(r);
@@ -95,6 +101,33 @@ var $Promise = (function () {
     }
     $Promise.deferred = function(){
         return new Deferred();
+    };
+    $Promise.all = function (promises) {
+        var deferred = new Deferred();
+        if(promises && !(promises instanceof Array)){
+            promises = [].concat(promises);
+        }else if(!promises){
+            deferred.resolve();
+            return deferred.promise;
+        }
+        var promiseCount = promises.length,
+            promiseDatas = [];
+        promises.forEach(function (p,index) {
+            p.then(function (data) {
+                if(promiseCount < 0){
+                    return;
+                }
+                promiseCount--;
+                promiseDatas[index] = data;
+                if(promiseCount === 0){
+                    deferred.resolve(promiseDatas);
+                }
+            }, function () {
+                deferred.reject();
+                promiseCount = -1;
+            });
+        });
+        return deferred.promise;
     };
     return $Promise;
 })();
