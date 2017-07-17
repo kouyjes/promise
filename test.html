@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="Promise.js"></script>
+        <script src="dest/promise.js"></script>
         <script>
+            var $Promise = HERE.$Promise;
             function asyncFn(fn,time){
                 time = time || Math.random() * 1000;
                 setTimeout(function () {

@@ -1,0 +1,31 @@
+{
+  "name": "promise",
+  "version": "1.0.0",
+  "description": "```javascript\r 1.var deferred = $Promise.deferred();\r async-callback(function(data){\r   deferred.resolve(data);\r });\r return deferred.promise;\r 2.new $Promise(function(resolve,reject){\r   async-callback(function(data){\r     resolve(data);\r   });\r });\r ```",
+  "main": "index.js",
+  "scripts": {
+    "build":"rollup -c && uglifyjs dest/promise.js > dest/promise.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouyjes/promise.git"
+  },
+  "keywords": [
+    "promise"
+  ],
+  "devDependencies": {
+    "rollup": "^0.36.3",
+    "rollup-plugin-scss": "^0.1.0",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-uglify": "^1.0.1",
+    "ruby": "^0.6.1",
+    "scss": "^0.2.4"
+  },
+  "author": "kouyj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kouyjes/promise/issues"
+  },
+  "homepage": "https://github.com/kouyjes/promise#readme"
+}
