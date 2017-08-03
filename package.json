@@ -1,5 +1,5 @@
 {
-  "name": "promise",
+  "name": "promise-deferred-sim",
   "version": "1.0.0",
   "description": "```javascript\r 1.var deferred = $Promise.deferred();\r async-callback(function(data){\r   deferred.resolve(data);\r });\r return deferred.promise;\r 2.new $Promise(function(resolve,reject){\r   async-callback(function(data){\r     resolve(data);\r   });\r });\r ```",
   "main": "index.js",
