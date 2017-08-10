@@ -123,7 +123,7 @@ $Promise.all = function (promises) {
     if(promises && !(promises instanceof Array)){
         promises = [].concat(promises);
     }else if(!promises || promises.length === 0){
-        deferred.resolve();
+        deferred.resolve([]);
         return deferred.promise;
     }
     var promiseCount = promises.length;
