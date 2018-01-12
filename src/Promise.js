@@ -112,6 +112,16 @@ function $Promise(func){
 $Promise.deferred = function(){
     return new Deferred();
 };
+$Promise.resolve = function (data) {
+    var deferred = new Deferred();
+    deferred.resolve(data);
+    return deferred.promise;
+};
+$Promise.reject = function (data) {
+    var deferred = new Deferred();
+    deferred.reject(data);
+    return deferred.promise;
+};
 $Promise.all = function (promises) {
     var deferred = new Deferred();
     if(promises && !(promises instanceof Array)){
@@ -121,16 +131,16 @@ $Promise.all = function (promises) {
         return deferred.promise;
     }
     var promiseCount = promises.length;
-    var promiseDatas = [];
+    var promiseData = [];
     promises.forEach(function (p,index) {
         p.then(function (data) {
             if(promiseCount < 0){
                 return;
             }
             promiseCount--;
-            promiseDatas[index] = data;
+            promiseData[index] = data;
             if(promiseCount === 0){
-                return deferred.resolve(promiseDatas);
+                return deferred.resolve(promiseData);
             }
         }, function (e) {
             promiseCount = -1;
