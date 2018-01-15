@@ -1,2 +1,2 @@
-var Promise = require('src/promise');
+var Promise = require('./dest/promise.js');
 module.exports = Promise;
